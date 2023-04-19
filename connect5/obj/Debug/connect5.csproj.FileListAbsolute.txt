@@ -1,0 +1,11 @@
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\bin\Debug\connect5.exe.config
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\bin\Debug\connect5.exe
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\bin\Debug\connect5.pdb
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.csproj.AssemblyReference.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.csproj.SuggestedBindingRedirects.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.board.resources
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.Properties.Resources.resources
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.csproj.GenerateResource.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.csproj.CoreCompileInputs.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.exe
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.pdb
