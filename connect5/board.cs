@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +21,18 @@ namespace connect5
         int colInsert;
         int count;
         int turn;
+        int rowCount = 7;
+        int colCount = 6;
+        int[,] matrix = new int[7, 6];
+
+        //Properties of each piece
+        struct panelProp
+        {
+           public int row;
+           public int col;
+           public int color;
+        }
+
         public board()
         {
             InitializeComponent();
@@ -50,14 +64,13 @@ namespace connect5
             return new Point(col, row);
         }
 
+        //MAKE PIECES
         void makePanel(int color, int col, int row)
         {
             
             Panel piece = new Panel();
             if (color == 1)
             {
-                //piece = redPiece;
-                //piece.Visible = true;
 
                 piece.BackColor = Color.Red;
 
@@ -67,10 +80,77 @@ namespace connect5
                 piece.BackColor = Color.Yellow;
             }
 
-
+            piece.Visible= false;
             board1.Controls.Add(piece, col, row);
+            piece.Visible= true;
+        }
+
+
+        //Outputs board to "board.txt" as string
+        void outputBoard()
+        {
+            panelProp prop = new panelProp();
+
+            string outBoard = "";
+            foreach (Control ctrl in board1.Controls)
+            {
+
+                prop.row = board1.GetRow(ctrl);
+                prop.col = board1.GetColumn(ctrl);
+                if (ctrl.BackColor == Color.Red)
+                {
+                    //Red
+                    prop.color = 1;
+                }
+                else
+                {
+                    //Yellow
+                    prop.color = 2;
+                }
+
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        if (i == prop.row && j == prop.col)
+                        {
+                            //Add piece to matrix (0 is blank in this)
+                            matrix[i, j] = prop.color;
+                        }
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[i, j] == 1)
+                    {
+                        //Red
+                        outBoard += "1";
+                    }
+                    else if (matrix[i,j] == 2)
+                    {
+                        //Yellow
+                        outBoard += "0";
+                    }
+                    else
+                    {
+                        //Blank
+                        outBoard += ".";
+                    }
+                }
+            }
+
+            using (StreamWriter writetext = new StreamWriter("board.txt"))
+            {
+                writetext.WriteLine(outBoard);
+            }
 
         }
+
 
         private void HumanButtonRed_Click(object sender, EventArgs e)
         {
@@ -91,9 +171,9 @@ namespace connect5
 
         private void board1_Click(object sender, EventArgs e)
         {
-            var cellPos = GetRowColIndex(
-            board1,
-            board1.PointToClient(Cursor.Position));
+            var cellPos = GetRowColIndex(board1,board1.PointToClient(Cursor.Position));
+            
+            //Counting number of turns
             count++;
 
             if(count % 2 == 1)
@@ -111,12 +191,18 @@ namespace connect5
 
             if(count % 2 == 1)
             {
+                //If odd turn then red
                 turnPanel.BackColor = Color.Red;
             }
             else
             {
+                //If even turn then yellow
                 turnPanel.BackColor = Color.Yellow;
             }
+
+
+            outputBoard();
+
 
         }
 
