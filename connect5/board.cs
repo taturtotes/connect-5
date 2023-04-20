@@ -17,7 +17,9 @@ namespace connect5
     {
         bool human1;
         bool human2;
+        //Row piece was inserted in
         int rowInsert;
+        //Column piece was inserted in
         int colInsert;
         int count;
         int turn;
@@ -65,7 +67,7 @@ namespace connect5
         }
 
         //MAKE PIECES
-        void makePanel(int color, int col, int row)
+        Panel makePanel(int color, int col, int row)
         {
             
             Panel piece = new Panel();
@@ -82,7 +84,8 @@ namespace connect5
 
             piece.Visible= false;
             board1.Controls.Add(piece, col, row);
-            piece.Visible= true;
+
+            return piece;
         }
 
 
@@ -186,10 +189,15 @@ namespace connect5
                 //Yellow
                 turn = 0;
             }
-            
-           makePanel(turn, colInsert, rowInsert);
 
-            if(count % 2 == 1)
+            //Drop down to lowest available slot in col
+            Panel piece = makePanel(turn, colInsert, rowInsert);
+            //Outboard
+            //If valid make piece visible
+            piece.Visible = true;
+            //Delete if not valid
+
+            if (count % 2 == 1)
             {
                 //If odd turn then red
                 turnPanel.BackColor = Color.Red;
