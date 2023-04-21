@@ -1,5 +1,0 @@
-C:\Users\lduff\OneDrive\Documents\CS 438\connect5\AI\obj\Debug\net5.0\AI.csproj.AssemblyReference.cache
-C:\Users\lduff\OneDrive\Documents\CS 438\connect5\AI\obj\Debug\net5.0\AI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lduff\OneDrive\Documents\CS 438\connect5\AI\obj\Debug\net5.0\AI.AssemblyInfoInputs.cache
-C:\Users\lduff\OneDrive\Documents\CS 438\connect5\AI\obj\Debug\net5.0\AI.AssemblyInfo.cs
-C:\Users\lduff\OneDrive\Documents\CS 438\connect5\AI\obj\Debug\net5.0\AI.csproj.CoreCompileInputs.cache
