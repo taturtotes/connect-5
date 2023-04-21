@@ -142,12 +142,12 @@ namespace connect5
                     else if (matrix[i,j] == 2)
                     {
                         //Yellow
-                        outBoard += "0";
+                        outBoard += "2";
                     }
                     else
                     {
                         //Blank
-                        outBoard += ".";
+                        outBoard += "0";
                     }
                 }
             }
@@ -180,6 +180,7 @@ namespace connect5
         private void board1_Click(object sender, EventArgs e)
         {
             var cellPos = GetRowColIndex(board1,board1.PointToClient(Cursor.Position));
+            playerInfo Player = new playerInfo();
             
             //Counting number of turns
             count++;
@@ -188,11 +189,13 @@ namespace connect5
             {
                 //Red
                 turn = 1;
+                Player.playerID = 1;
             }
             else
             {
                 //Yellow
-                turn = 0;
+                turn = 2;
+                Player.playerID = 2;
             }
 
             //Drop down to lowest available slot in col
@@ -248,41 +251,42 @@ namespace connect5
             }
         }
 
-        void IsWinner(int colInsert, int rowInsert, )
+        bool IsWinner(int colInsert, int rowInsert,  playerInfo Player)
         {
-            int winner;
+            int currPlayer = Player.playerID;
 
             for(int i = 6; i >= 1; --i )
             {
                 for(int j = 5; j >= 1; --j)
                 {
-                    if (matrix[i, j] == 1 && matrix[i-1,j-1] == 1 && matrix[i - 2, j - 2] == 1 &&
-                        matrix[i - 3, j - 3] == 1 &&  matrix[i - 4, j - 4] == 1)
+                    if (matrix[i, j] == currPlayer && matrix[i-1,j-1] == currPlayer && matrix[i - 2, j - 2] == currPlayer &&
+                        matrix[i - 3, j - 3] == currPlayer &&  matrix[i - 4, j - 4] == currPlayer)
                     {
-
+                        return true;
                     }
-                    if (matrix[i,j] == 1 && matrix[i, j-1] == 1 && matrix[i, j - 2] == 1 &&
-                        matrix[i, j - 3] == 1 && matrix[i, j - 4] == 1)
+                    if (matrix[i,j] == currPlayer && matrix[i, j-1] == currPlayer && matrix[i, j - 2] == currPlayer &&
+                        matrix[i, j - 3] == currPlayer && matrix[i, j - 4] == currPlayer)
                     {
-
+                        return true;
                     }
-                    if(matrix[i, j] == 1 && matrix[i-1, j] == 1 && matrix[i-2, j] == 1 &&
-                       matrix[i - 3, j] == 1 && matrix[i -4, j] == 1)
+                    if(matrix[i, j] == currPlayer && matrix[i-1, j] == currPlayer && matrix[i-2, j] == currPlayer &&
+                       matrix[i - 3, j] == currPlayer && matrix[i -4, j] == currPlayer)
                     {
-
+                        return true;
                     }
-                    if(matrix[i, j] == 1 && matrix[i - 1, j+1] == 1 && matrix[i - 2, j +2] == 1 &&
-                       matrix[i - 3, j +3] == 1 && matrix[i - 4, j +4] == 1)
+                    if(matrix[i, j] == currPlayer && matrix[i - 1, j+1] == currPlayer && matrix[i - 2, j +2] == currPlayer &&
+                       matrix[i - 3, j +3] == currPlayer && matrix[i - 4, j +4] == currPlayer)
                     {
-
+                        return true;
                     }
-                    if(matrix[i, j] == 1 && matrix[i , j + 1] == 1 && matrix[i , j  + 2] == 1 &&
-                       matrix[i , j + 3] == 1 && matrix[i , j + 4] == 1)
+                    if(matrix[i, j] == currPlayer && matrix[i , j + 1] != 0 && matrix[i , j  + 2] == currPlayer &&
+                       matrix[i , j + 3] == currPlayer && matrix[i , j + 4] == currPlayer)
                     {
-
+                        return true;
                     }
                 }
             }
+            return false;
         }
     }
 }
