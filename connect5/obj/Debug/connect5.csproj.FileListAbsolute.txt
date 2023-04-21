@@ -20,3 +20,4 @@ C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.csproj.Genera
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.csproj.CoreCompileInputs.cache
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.exe
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.pdb
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.Winner.resources

@@ -228,6 +228,7 @@ namespace connect5
 
             turnPanel.BackColor = Color.Red;
 
+
             //Starts exe files
             if (computer1 == true)
             {
@@ -288,17 +289,18 @@ namespace connect5
 
             outputBoard();
 
-            IsWinner(colInsert, rowInsert, Player);
 
-            //if (IsWinner(colInsert, rowInsert, Player))
-            //{
-            //    //Show game over screen & call reset
-            //}
+            if (IsWinner(colInsert, rowInsert, Player))
+            {
+                //Opens winner form and passes in player
+                Winner frm = new Winner(Player);
+                frm.Show(this);
+            }
 
 
         }
 
-        private void ResetButton_Click(object sender, EventArgs e)
+        public void ResetButton_Click(object sender, EventArgs e)
         {
             foreach (Control ctrl in board1.Controls)
             {
