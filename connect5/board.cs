@@ -278,19 +278,19 @@ namespace connect5
             if (count % 2 == 1)
             {
                 //If odd turn then red
-                turnPanel.BackColor = Color.Red;
+                turnPanel.BackColor = Color.Yellow;
             }
             else
             {
                 //If even turn then yellow
-                turnPanel.BackColor = Color.Yellow;
+                turnPanel.BackColor = Color.Red;
             }
 
 
             outputBoard();
 
 
-            if (IsWinner(colInsert, rowInsert, Player))
+            if (IsWinner(colInsert, rowInsert, Player) == true)
             {
                 //Opens winner form and passes in player
                 Winner frm = new Winner(Player);
@@ -341,45 +341,74 @@ namespace connect5
                 return true;
             }
         }
-
         bool IsWinner(int colInsert, int rowInsert, playerInfo Player)
         {
-            int currPlayer = Player.playerID;
-
-            for (int i = 6; i >= 1; --i)
+            // Checks horizontal wins
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int j = 5; j >= 1; --j)
+                for (int col = 0; col < matrix.GetLength(1) - 4; col++)
                 {
-                    if (matrix[i, j] == currPlayer && matrix[i - 1, j - 1] == currPlayer && matrix[i - 2, j - 2] == currPlayer &&
-                        matrix[i - 3, j - 3] == currPlayer && matrix[i - 4, j - 4] == currPlayer)
-                    {
-                        return true;
-                    }
-                    if (matrix[i, j] == currPlayer && matrix[i, j - 1] == currPlayer && matrix[i, j - 2] == currPlayer &&
-                        matrix[i, j - 3] == currPlayer && matrix[i, j - 4] == currPlayer)
-                    {
-                        return true;
-                    }
-                    if (matrix[i, j] == currPlayer && matrix[i - 1, j] == currPlayer && matrix[i - 2, j] == currPlayer &&
-                       matrix[i - 3, j] == currPlayer && matrix[i - 4, j] == currPlayer)
-                    {
-                        return true;
-                    }
-                    if (matrix[i, j] == currPlayer && matrix[i - 1, j + 1] == currPlayer && matrix[i - 2, j + 2] == currPlayer &&
-                       matrix[i - 3, j + 3] == currPlayer && matrix[i - 4, j + 4] == currPlayer)
-                    {
-                        return true;
-                    }
-                    if (matrix[i, j] == currPlayer && matrix[i, j + 1] != 0 && matrix[i, j + 2] == currPlayer &&
-                       matrix[i, j + 3] == currPlayer && matrix[i, j + 4] == currPlayer)
+                    if (matrix[row, col] == Player.playerID
+                        && matrix[row, col + 1] == Player.playerID
+                        && matrix[row, col + 2] == Player.playerID
+                        && matrix[row, col + 3] == Player.playerID
+                        && matrix[row, col + 4] == Player.playerID)
                     {
                         return true;
                     }
                 }
             }
+
+            // Checks vertical wins
+            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    if (matrix[row, col] == Player.playerID
+                        && matrix[row + 1, col] == Player.playerID
+                        && matrix[row + 2, col] == Player.playerID
+                        && matrix[row + 3, col] == Player.playerID
+                        && matrix[row + 4, col] == Player.playerID)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // Checks downward diagonal
+            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1) - 4; col++)
+                {
+                    if (matrix[row, col] == Player.playerID
+                        && matrix[row + 1, col + 1] == Player.playerID
+                        && matrix[row + 2, col + 2] == Player.playerID
+                        && matrix[row + 3, col + 3] == Player.playerID
+                        && matrix[row + 4, col + 4] == Player.playerID)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // Checks upward diagonal
+            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            {
+                for (int col = matrix.GetLength(1) - 1; col >= 4; col--)
+                {
+                    if (matrix[row, col] == Player.playerID
+                        && matrix[row + 1, col - 1] == Player.playerID
+                        && matrix[row + 2, col - 2] == Player.playerID
+                        && matrix[row + 3, col - 3] == Player.playerID
+                        && matrix[row + 4, col - 4] == Player.playerID)
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
-
 
 
         private void ComputerButton1_Click(object sender, EventArgs e)
