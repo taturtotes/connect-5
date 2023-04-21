@@ -49,6 +49,9 @@ namespace connect5
         string comp2File;
 
         //Properties of each piece
+        public static string boardFile = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\board.txt");
+        public static string newBoardFile = boardFile;
+
         struct panelProp
         {
             public int row;
@@ -139,6 +142,10 @@ namespace connect5
 
             }
 
+            using (StreamWriter writetext = new StreamWriter("move.txt"))
+            {
+                writetext.WriteLine(col + " " + row);
+            }
 
             board1.Controls.Add(piece, col, row);
 
@@ -189,23 +196,26 @@ namespace connect5
                     if (matrix[i, j] == 1)
                     {
                         //Red
-                        outBoard += "1 ";
+                        outBoard += "1,";
                     }
                     else if (matrix[i, j] == 2)
                     {
                         //Yellow
-                        outBoard += "2 ";
+                        outBoard += "2,";
                     }
                     else
                     {
                         //Blank
-                        outBoard += "0 ";
+                        outBoard += "0,";
                     }
                 }
                 outBoard += "\n";
             }
 
-            using (StreamWriter writetext = new StreamWriter("board.txt"))
+            //string fileName = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\board.txt");
+
+
+            using (StreamWriter writetext = new StreamWriter(boardFile))
             {
                 writetext.WriteLine(outBoard);
             }
@@ -232,20 +242,22 @@ namespace connect5
             //Starts exe files
             if (computer1 == true)
             {
+                //Does the first move
                 Process.Start(comp1File);
-            }
-
-            if (computer2 == true)
-            {
-                Process.Start(comp1File);
+                String input = File.ReadAllText("move.txt");
+                char c = input[0];
+                char r = input[2];
+                colInsert = Int32.Parse(c.ToString());
+                rowInsert = Int32.Parse(r.ToString());
+                computerClick();
             }
 
 
         }
 
-        private void board1_Click(object sender, EventArgs e)
+        //Clicks for the computer
+        public void computerClick()
         {
-            var cellPos = GetRowColIndex(board1, board1.PointToClient(Cursor.Position));
             playerInfo Player = new playerInfo();
 
             //Counting number of turns
@@ -264,7 +276,74 @@ namespace connect5
                 Player.playerID = 2;
             }
 
+            if ((human1 == true && turn == 1) || (human2 == true && turn == 2))
+            {
+                var cellPos = GetRowColIndex(board1, board1.PointToClient(Cursor.Position));
+            }
             outputBoard();
+
+
+            Panel piece = makePanel(turn, colInsert, rowInsert);
+            piece.Visible = true;
+
+
+            //Outboard
+            //If valid make piece visible
+
+            //Delete if not valid
+
+            if (count % 2 == 1)
+            {
+                //If odd turn then yellow
+                turnPanel.BackColor = Color.Yellow;
+            }
+            else
+            {
+                //If even turn then red
+                turnPanel.BackColor = Color.Red;
+            }
+
+
+            outputBoard();
+
+            //Add logic to determine if it is computer or human turn
+            if (IsWinner(colInsert, rowInsert, Player) == true)
+            {
+                //Opens winner form and passes in player
+                Winner frm = new Winner(Player);
+                frm.Show(this);
+            }
+        }
+
+
+        private void board1_Click(object sender, EventArgs e)
+        {
+            
+            
+            playerInfo Player = new playerInfo();
+
+            //Counting number of turns
+            count++;
+
+            if (count % 2 == 1)
+            {
+                //Red
+                turn = 1;
+                Player.playerID = 1;
+            }
+            else
+            {
+                //Yellow
+                turn = 2;
+                Player.playerID = 2;
+            }
+
+            if ((human1 == true && turn == 1) || (human2 == true && turn == 2))
+            {
+                var cellPos = GetRowColIndex(board1, board1.PointToClient(Cursor.Position));
+            }
+            outputBoard();
+
 
             Panel piece = makePanel(turn, colInsert, rowInsert);
             piece.Visible = true;
@@ -289,7 +368,7 @@ namespace connect5
 
             outputBoard();
 
-
+            //Add logic to determine if it is computer or human turn
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
                 //Opens winner form and passes in player

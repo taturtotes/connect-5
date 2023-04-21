@@ -22,3 +22,4 @@ C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.exe
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.pdb
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.Winner.resources
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.Winner.resources
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\bin\Debug\move.txt

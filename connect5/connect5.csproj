@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\computer_AI\bin\Debug\move.txt">
+      <Link>move.txt</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\red_piece.jpg" />
     <Content Include="Properties\yellow_piece.jpg" />
   </ItemGroup>
