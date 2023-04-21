@@ -10,6 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+public struct playerInfo
+{
+    public int playerID;
+};
+
 namespace connect5
 {
 
@@ -69,7 +74,7 @@ namespace connect5
         //MAKE PIECES
         Panel makePanel(int color, int col, int row)
         {
-            
+
             Panel piece = new Panel();
             if (color == 1)
             {
@@ -242,9 +247,11 @@ namespace connect5
                 return true;
             }
         }
-        void IsWinner(int colInsert, int rowInsert)
+
+        void IsWinner(int colInsert, int rowInsert, )
         {
-            
+            int winner;
+
             for(int i = 6; i >= 1; --i )
             {
                 for(int j = 5; j >= 1; --j)
