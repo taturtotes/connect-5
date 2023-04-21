@@ -71,11 +71,12 @@ namespace connect5
             return new Point(col, row);
         }
 
-        //MAKE PIECES
+        //MAKE PIECES and drops piece in the last available slot
         Panel makePanel(int color, int col, int row)
         {
 
             Panel piece = new Panel();
+            bool found = false;
             if (color == 1)
             {
 
@@ -88,6 +89,41 @@ namespace connect5
             }
 
             piece.Visible= false;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                if(found == true)
+                {
+                    break;
+                }
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (j == col && row == 6)
+                    {
+                        row = 6;
+                        found = true;
+                    }
+                    else if (i != 6 && j == col && matrix[i + 1, j] != 0)
+                    {
+                        row = i;
+                        found = true;
+                    }
+                    else
+                    {
+                        if (j == col && i == 6)
+                        {
+                            row = i;
+                            found = true;
+                        }
+                     
+                    }
+                   
+
+                }
+
+            }
+
+
             board1.Controls.Add(piece, col, row);
 
             return piece;
@@ -198,11 +234,15 @@ namespace connect5
                 Player.playerID = 2;
             }
 
-            //Drop down to lowest available slot in col
-            Panel piece = makePanel(turn, colInsert, rowInsert);
+            outputBoard();
+
+             Panel piece = makePanel(turn, colInsert, rowInsert);
+             piece.Visible = true;
+
+
             //Outboard
             //If valid make piece visible
-            piece.Visible = true;
+           
             //Delete if not valid
 
             if (count % 2 == 1)
@@ -219,14 +259,32 @@ namespace connect5
 
             outputBoard();
 
+            //if (IsWinner(colInsert, rowInsert,Player))
+            //{
+            //    //Show game over screen & call reset
+            //}
+
 
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
+            foreach (Control ctrl in board1.Controls)
+            {
+                ctrl.Visible= false;
+            }
+
             board1.Controls.Clear();
             turnPanel.BackColor = SystemColors.Control;
-        }
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[i, j] = 0;
+                }
+            }
+
+         }
         bool IsValid(int colInstert)
         {
             int countCol = 0;
