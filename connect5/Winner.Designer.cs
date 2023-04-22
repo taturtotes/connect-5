@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Winner));
             this.winnerLabel = new System.Windows.Forms.Label();
             this.winnerPlayer = new System.Windows.Forms.Panel();
             this.againButton = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             // 
             // winnerPlayer
             // 
+            this.winnerPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.winnerPlayer.Location = new System.Drawing.Point(176, 93);
             this.winnerPlayer.Name = "winnerPlayer";
             this.winnerPlayer.Size = new System.Drawing.Size(100, 84);
@@ -84,6 +86,7 @@
             this.Controls.Add(this.againButton);
             this.Controls.Add(this.winnerPlayer);
             this.Controls.Add(this.winnerLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Winner";
             this.Text = "Winner";
             this.ResumeLayout(false);
