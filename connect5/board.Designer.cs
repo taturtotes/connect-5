@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(board));
             this.board1 = new System.Windows.Forms.TableLayoutPanel();
             this.redPanel = new System.Windows.Forms.Panel();
@@ -39,12 +40,13 @@
             this.ComputerButton2 = new System.Windows.Forms.Button();
             this.HumanButton2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.logButton = new System.Windows.Forms.Button();
             this.turnPanel = new System.Windows.Forms.Panel();
             this.TurnLabel = new System.Windows.Forms.Label();
             this.ControlLabel = new System.Windows.Forms.Label();
             this.ResetButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.logButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.redPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,11 +58,11 @@
             this.board1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.board1.ColumnCount = 6;
             this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
             this.board1.Location = new System.Drawing.Point(358, 18);
             this.board1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.board1.Name = "board1";
@@ -72,6 +74,7 @@
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.board1.Size = new System.Drawing.Size(662, 536);
             this.board1.TabIndex = 0;
             this.board1.Click += new System.EventHandler(this.board1_Click);
@@ -202,6 +205,18 @@
             this.panel2.Size = new System.Drawing.Size(273, 208);
             this.panel2.TabIndex = 5;
             // 
+            // logButton
+            // 
+            this.logButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logButton.ForeColor = System.Drawing.Color.Blue;
+            this.logButton.Location = new System.Drawing.Point(12, 143);
+            this.logButton.Name = "logButton";
+            this.logButton.Size = new System.Drawing.Size(123, 51);
+            this.logButton.TabIndex = 5;
+            this.logButton.Text = "Check Log";
+            this.logButton.UseVisualStyleBackColor = true;
+            this.logButton.Click += new System.EventHandler(this.logButton_Click);
+            // 
             // turnPanel
             // 
             this.turnPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -265,17 +280,9 @@
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // logButton
+            // timer1
             // 
-            this.logButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logButton.ForeColor = System.Drawing.Color.Blue;
-            this.logButton.Location = new System.Drawing.Point(12, 143);
-            this.logButton.Name = "logButton";
-            this.logButton.Size = new System.Drawing.Size(123, 51);
-            this.logButton.TabIndex = 5;
-            this.logButton.Text = "Check Log";
-            this.logButton.UseVisualStyleBackColor = true;
-            this.logButton.Click += new System.EventHandler(this.logButton_Click);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // board
             // 
@@ -319,6 +326,7 @@
         private System.Windows.Forms.Button startButton;
         public System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Button logButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

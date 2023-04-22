@@ -48,8 +48,8 @@ namespace computer_AI
 
         public static void findRandom(int[,] board)
         {
-            row = r.Next(0, 7);
-            col = r.Next(0, 6);
+            row = r.Next(0, connect5.board.lastrow);
+            col = r.Next(0, connect5.board.lastcol);
 
             if (board[row, col] == 0)
             {

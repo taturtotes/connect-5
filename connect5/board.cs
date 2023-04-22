@@ -38,15 +38,17 @@ namespace connect5
         //Tells whose turn it is
         int turn;
 
-        int rowCount = 7;
-        int colCount = 6;
-
         //Holds board
-        int[,] matrix = new int[7, 6];
+        int[,] matrix;
 
         //Contains name of exe file
         string comp1File;
         string comp2File;
+
+
+        int tick = 0;
+        public static int lastcol = 0;
+        public static int lastrow = 0;
 
         //Properties of each piece
         public static string boardFile = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\board.txt");
@@ -59,9 +61,59 @@ namespace connect5
             public int color;
         }
 
-        public board()
+        public board(int row, int col, int time)
         {
             InitializeComponent();
+
+            matrix = new int[row, col];
+            tick = time;
+            lastrow = row;
+            lastcol = col;
+
+            if(row == 10)
+            {
+                board1.RowCount = 10;
+                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+
+                TableLayoutRowStyleCollection styles = this.board1.RowStyles;
+
+                foreach(RowStyle style in styles)
+                {
+                    style.SizeType= SizeType.Percent;
+                    style.Height = 10;
+                }
+            }
+
+            if(row == 9)
+            {
+                board1.RowCount = 9;
+                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 11));
+
+                TableLayoutRowStyleCollection styles = this.board1.RowStyles;
+
+                foreach (RowStyle style in styles)
+                {
+                    style.SizeType = SizeType.Percent;
+                    style.Height = 11;
+                }
+            }
+
+            if(col == 7)
+            {
+                board1.ColumnCount= 7;
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17));
+
+                TableLayoutColumnStyleCollection styles = this.board1.ColumnStyles;
+
+                foreach (ColumnStyle style in styles)
+                {
+                    style.SizeType = SizeType.Percent;
+                    style.Width = 17;
+                }
+
+            }
+
         }
 
         Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
@@ -118,19 +170,19 @@ namespace connect5
                 }
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (j == col && row == 6)
+                    if (j == col && row == (lastrow-1))
                     {
-                        row = 6;
+                        row = (lastrow - 1);
                         found = true;
                     }
-                    else if (i != 6 && j == col && matrix[i + 1, j] != 0)
+                    else if (i != (lastrow - 1) && j == col && matrix[i + 1, j] != 0)
                     {
                         row = i;
                         found = true;
                     }
                     else
                     {
-                        if (j == col && i == 6)
+                        if (j == col && i == (lastrow - 1))
                         {
                             row = i;
                             found = true;
@@ -248,6 +300,8 @@ namespace connect5
             turnPanel.BackColor = Color.Red;
             File.WriteAllText("log.txt", string.Empty);
 
+            timer1.Interval = tick;
+            timer1.Start();
 
             //Starts exe files
             if (computer1 == true)
@@ -262,12 +316,16 @@ namespace connect5
                 computerClick();
             }
 
+            
 
         }
+
 
         //Clicks for the computer
         public void computerClick()
         {
+            timer1.Start();
+
             playerInfo Player = new playerInfo();
 
             //Counting number of turns
@@ -289,8 +347,8 @@ namespace connect5
 
             outputBoard();
 
-
             Panel piece = makePanel(turn, colInsert, rowInsert);
+            timer1.Stop();
             piece.Visible = true;
 
 
@@ -344,6 +402,8 @@ namespace connect5
                     computerClick();
                 }
 
+                
+
             }
 
         }
@@ -351,7 +411,6 @@ namespace connect5
 
         private void board1_Click(object sender, EventArgs e)
         {
-
 
             playerInfo Player = new playerInfo();
 
@@ -379,6 +438,7 @@ namespace connect5
 
 
             Panel piece = makePanel(turn, colInsert, rowInsert);
+            timer1.Stop();
             piece.Visible = true;
 
 
@@ -428,54 +488,19 @@ namespace connect5
                 rowInsert = Int32.Parse(r.ToString());
                 computerClick();
             }
-
+            timer1.Start();
 
         }
 
         public void ResetButton_Click(object sender, EventArgs e)
         {
-            foreach (Control ctrl in board1.Controls)
-            {
-                ctrl.Visible = false;
-            }
-
-            board1.Controls.Clear();
-            turnPanel.BackColor = SystemColors.Control;
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    matrix[i, j] = 0;
-                }
-            }
-
-            turn = 0;
-            File.WriteAllText("log.txt", string.Empty);
+            timer1.Enabled= false;
+            board b = new board(lastrow, lastcol, tick);
+            b.Show();
+            this.Dispose(false);
 
         }
-        bool IsValid(int colInstert)
-        {
-            int countCol = 0;
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (matrix[i, j] != 0 && j == colInstert)
-                    {
-                        countCol++;
-                    }
-                }
-            }
-
-            if (countCol == 7)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+       
         bool IsWinner(int colInsert, int rowInsert, playerInfo Player)
         {
             // Checks horizontal wins
@@ -573,6 +598,16 @@ namespace connect5
         private void logButton_Click(object sender, EventArgs e)
         {
             Process.Start("log.txt");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            string message = "You ran out of time!";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            string caption = "You lose";
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+            ResetButton.PerformClick();
         }
     }
 }
