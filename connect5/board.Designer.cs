@@ -275,6 +275,7 @@
             this.logButton.TabIndex = 5;
             this.logButton.Text = "Check Log";
             this.logButton.UseVisualStyleBackColor = true;
+            this.logButton.Click += new System.EventHandler(this.logButton_Click);
             // 
             // board
             // 

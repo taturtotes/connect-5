@@ -145,6 +145,19 @@ namespace connect5
 
             board1.Controls.Add(piece, col, row);
 
+            using (StreamWriter writetext = File.AppendText("log.txt"))
+            {
+                if(turn == 1)
+                {
+                    writetext.WriteLine("Red Player placed piece in row: " + row + " col: " + col);
+                }
+                else if(turn == 2)
+                {
+                    writetext.WriteLine("Yellow Player placed piece in row: " + row + " col: " + col);
+                }
+                
+            }
+
             return piece;
         }
 
@@ -233,6 +246,7 @@ namespace connect5
         {
 
             turnPanel.BackColor = Color.Red;
+            File.WriteAllText("log.txt", string.Empty);
 
 
             //Starts exe files
@@ -435,6 +449,9 @@ namespace connect5
                 }
             }
 
+            turn = 0;
+            File.WriteAllText("log.txt", string.Empty);
+
         }
         bool IsValid(int colInstert)
         {
@@ -551,6 +568,11 @@ namespace connect5
                 computer2 = true;
 
             }
+        }
+
+        private void logButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("log.txt");
         }
     }
 }
