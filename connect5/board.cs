@@ -100,6 +100,7 @@ namespace connect5
             {
 
                 piece.BackColor = Color.Red;
+                
 
             }
             else
