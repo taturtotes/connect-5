@@ -199,13 +199,13 @@
             this.panel2.Location = new System.Drawing.Point(11, 359);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(264, 196);
+            this.panel2.Size = new System.Drawing.Size(273, 208);
             this.panel2.TabIndex = 5;
             // 
             // turnPanel
             // 
             this.turnPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.turnPanel.Location = new System.Drawing.Point(132, 98);
+            this.turnPanel.Location = new System.Drawing.Point(141, 98);
             this.turnPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.turnPanel.Name = "turnPanel";
             this.turnPanel.Size = new System.Drawing.Size(119, 84);
@@ -269,9 +269,9 @@
             // 
             this.logButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logButton.ForeColor = System.Drawing.Color.Blue;
-            this.logButton.Location = new System.Drawing.Point(14, 140);
+            this.logButton.Location = new System.Drawing.Point(12, 143);
             this.logButton.Name = "logButton";
-            this.logButton.Size = new System.Drawing.Size(107, 42);
+            this.logButton.Size = new System.Drawing.Size(123, 51);
             this.logButton.TabIndex = 5;
             this.logButton.Text = "Check Log";
             this.logButton.UseVisualStyleBackColor = true;
