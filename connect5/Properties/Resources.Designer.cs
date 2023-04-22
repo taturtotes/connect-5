@@ -73,6 +73,16 @@ namespace connect5.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap connect5logo {
+            get {
+                object obj = ResourceManager.GetObject("connect5logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap red_piece {
             get {
                 object obj = ResourceManager.GetObject("red_piece", resourceCulture);

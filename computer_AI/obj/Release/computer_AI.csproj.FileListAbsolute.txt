@@ -1,0 +1,14 @@
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\move.txt
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\board.txt
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\computer_AI.exe.config
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\computer_AI.exe
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\computer_AI.pdb
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\connect5.exe
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\connect5.pdb
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Release\connect5.exe.config
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.csproj.AssemblyReference.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.csproj.SuggestedBindingRedirects.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.csproj.CoreCompileInputs.cache
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.csproj.CopyComplete
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.exe
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Release\computer_AI.pdb

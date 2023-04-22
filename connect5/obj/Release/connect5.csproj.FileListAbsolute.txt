@@ -11,3 +11,4 @@ C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Release\connect5.
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Release\connect5.csproj.CoreCompileInputs.cache
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Release\connect5.exe
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Release\connect5.pdb
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Release\connect5.Menu.resources

@@ -609,5 +609,10 @@ namespace connect5
             DialogResult result = MessageBox.Show(message, caption, buttons);
             ResetButton.PerformClick();
         }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

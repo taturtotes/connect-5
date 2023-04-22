@@ -107,6 +107,7 @@
     <Content Include="Properties\red_piece.jpg" />
     <Content Include="Properties\yellow_piece.jpg" />
     <Content Include="redPlayer.jpg" />
+    <None Include="Resources\connect5logo.png" />
     <None Include="Resources\connect4logo.png" />
     <None Include="Resources\yellow_piece.jpg" />
     <None Include="Resources\red_piece.jpg" />

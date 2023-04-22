@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.sizeLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.check76 = new System.Windows.Forms.CheckBox();
@@ -39,16 +38,8 @@
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::connect5.Properties.Resources.connect4logo;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(79, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(460, 152);
-            this.panel1.TabIndex = 0;
             // 
             // sizeLabel
             // 
@@ -147,6 +138,15 @@
             this.button1.Text = "Play!";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::connect5.Properties.Resources.connect5logo;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(79, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(460, 152);
+            this.panel1.TabIndex = 0;
             // 
             // Menu
             // 

@@ -47,6 +47,7 @@
             this.ResetButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.menuButton = new System.Windows.Forms.Button();
             this.redPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,7 +87,7 @@
             this.redPanel.Controls.Add(this.RedLabel);
             this.redPanel.Controls.Add(this.ComputerButton1);
             this.redPanel.Controls.Add(this.HumanButtonRed);
-            this.redPanel.Location = new System.Drawing.Point(11, 47);
+            this.redPanel.Location = new System.Drawing.Point(12, 71);
             this.redPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.redPanel.Name = "redPanel";
             this.redPanel.Size = new System.Drawing.Size(264, 140);
@@ -141,7 +142,7 @@
             this.panel1.Controls.Add(this.YellowLabel);
             this.panel1.Controls.Add(this.ComputerButton2);
             this.panel1.Controls.Add(this.HumanButton2);
-            this.panel1.Location = new System.Drawing.Point(11, 192);
+            this.panel1.Location = new System.Drawing.Point(12, 215);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(264, 140);
@@ -284,12 +285,28 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // menuButton
+            // 
+            this.menuButton.BackColor = System.Drawing.Color.White;
+            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuButton.ForeColor = System.Drawing.Color.Blue;
+            this.menuButton.Location = new System.Drawing.Point(12, 11);
+            this.menuButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(109, 46);
+            this.menuButton.TabIndex = 6;
+            this.menuButton.Text = "Menu";
+            this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
             // board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1031, 578);
+            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.redPanel);
@@ -327,6 +344,7 @@
         public System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Button logButton;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button menuButton;
     }
 }
 
