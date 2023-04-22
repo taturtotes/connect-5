@@ -11,3 +11,4 @@ C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Debug\computer
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Debug\computer_AI.exe
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Debug\computer_AI.pdb
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Debug\board.txt
+C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Debug\move.txt

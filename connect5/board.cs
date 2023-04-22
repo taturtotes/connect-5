@@ -142,11 +142,6 @@ namespace connect5
 
             }
 
-            using (StreamWriter writetext = new StreamWriter("move.txt"))
-            {
-                writetext.WriteLine(col + " " + row);
-            }
-
             board1.Controls.Add(piece, col, row);
 
             return piece;
@@ -276,10 +271,7 @@ namespace connect5
                 Player.playerID = 2;
             }
 
-            if ((human1 == true && turn == 1) || (human2 == true && turn == 2))
-            {
-                var cellPos = GetRowColIndex(board1, board1.PointToClient(Cursor.Position));
-            }
+
             outputBoard();
 
 
@@ -313,13 +305,39 @@ namespace connect5
                 Winner frm = new Winner(Player);
                 frm.Show(this);
             }
+            else if (human1 == false && human2 == false)
+            {
+
+                if (count % 2 == 0)
+                {
+                    Process.Start(comp1File);
+                    String input = File.ReadAllText("move.txt");
+                    char c = input[0];
+                    char r = input[2];
+                    colInsert = Int32.Parse(c.ToString());
+                    rowInsert = Int32.Parse(r.ToString());
+                    computerClick();
+                }
+                else
+                {
+                    Process.Start(comp2File);
+                    String input = File.ReadAllText("move.txt");
+                    char c = input[0];
+                    char r = input[2];
+                    colInsert = Int32.Parse(c.ToString());
+                    rowInsert = Int32.Parse(r.ToString());
+                    computerClick();
+                }
+
+            }
+
         }
 
 
         private void board1_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             playerInfo Player = new playerInfo();
 
             //Counting number of turns
@@ -374,6 +392,26 @@ namespace connect5
                 //Opens winner form and passes in player
                 Winner frm = new Winner(Player);
                 frm.Show(this);
+            }
+            else if (computer1 == true && count % 2 == 0)
+            {
+                Process.Start(comp1File);
+                String input = File.ReadAllText("move.txt");
+                char c = input[0];
+                char r = input[2];
+                colInsert = Int32.Parse(c.ToString());
+                rowInsert = Int32.Parse(r.ToString());
+                computerClick();
+            }
+            else if (computer2 == true && count % 2 == 1)
+            {
+                Process.Start(comp2File);
+                String input = File.ReadAllText("move.txt");
+                char c = input[0];
+                char r = input[2];
+                colInsert = Int32.Parse(c.ToString());
+                rowInsert = Int32.Parse(r.ToString());
+                computerClick();
             }
 
 
