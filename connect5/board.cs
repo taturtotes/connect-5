@@ -375,8 +375,12 @@ namespace connect5
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
                 //Opens winner form and passes in player
+                timer1.Stop();
+                timer1.Enabled = false;
+                timer1.Interval = 1000000000;
                 Winner frm = new Winner(Player);
                 frm.Show(this);
+   
             }
             else if (human1 == false && human2 == false)
             {
@@ -465,8 +469,12 @@ namespace connect5
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
                 //Opens winner form and passes in player
+                timer1.Stop();
+                timer1.Enabled = false;
+                timer1.Interval = 1000000000;
                 Winner frm = new Winner(Player);
                 frm.Show(this);
+                
             }
             else if (computer1 == true && count % 2 == 0)
             {
