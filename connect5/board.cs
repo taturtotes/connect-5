@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+//Tells which player is which
 public struct playerInfo
 {
     public int playerID;
@@ -50,10 +52,11 @@ namespace connect5
         public static int lastcol = 0;
         public static int lastrow = 0;
 
-        //Properties of each piece
+        //board.txt path
         public static string boardFile = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\board.txt");
-        public static string newBoardFile = boardFile;
 
+
+        //Properties of each piece
         struct panelProp
         {
             public int row;
@@ -65,6 +68,8 @@ namespace connect5
         {
             InitializeComponent();
 
+
+            //Applies selections made in menu screen
             matrix = new int[row, col];
             tick = time;
             lastrow = row;
@@ -116,30 +121,38 @@ namespace connect5
 
         }
 
-        Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
+        //Gets the point where human player clicks the board
+        void getIndex(TableLayoutPanel board, Point point)
         {
-            if (point.X > tlp.Width || point.Y > tlp.Height)
-                return null;
 
-            int w = tlp.Width;
-            int h = tlp.Height;
-            int[] widths = tlp.GetColumnWidths();
+            //Get the width and Height of board
+            int w = board.Width;
+            int h = board.Height;
+            int[] widths = board.GetColumnWidths();
 
             int i;
+
+            //Get exact width clicked
             for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
+            {
                 w -= widths[i];
+            }
             int col = i + 1;
 
-            int[] heights = tlp.GetRowHeights();
-            for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
-                h -= heights[i];
+            int[] heights = board.GetRowHeights();
 
+            //Get exact height clicked
+            for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
+            {
+                h -= heights[i];
+            }
+            
             int row = i + 1;
 
+            //Set row inserted and column inserted
             rowInsert = row;
             colInsert = col;
 
-            return new Point(col, row);
         }
 
         //MAKE PIECES and drops piece in the last available slot
@@ -162,6 +175,8 @@ namespace connect5
 
             piece.Visible = false;
 
+
+            //Finds last available space in column
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 if (found == true)
@@ -195,8 +210,10 @@ namespace connect5
 
             }
 
+            //Adds piece to board
             board1.Controls.Add(piece, col, row);
 
+            //Updates the log
             using (StreamWriter writetext = File.AppendText("log.txt"))
             {
                 if(turn == 1)
@@ -273,9 +290,7 @@ namespace connect5
                 outBoard += "\n";
             }
 
-            //string fileName = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\board.txt");
-
-
+            //Writes to board.txt
             using (StreamWriter writetext = new StreamWriter(boardFile))
             {
                 writetext.WriteLine(outBoard);
@@ -284,22 +299,27 @@ namespace connect5
         }
 
 
+        //Tells if human
         private void HumanButtonRed_Click(object sender, EventArgs e)
         {
             human1 = true;
         }
 
+        //Tells if human
         private void HumanButton2_Click(object sender, EventArgs e)
         {
             human2 = true;
         }
 
+
+        //Starts game
         private void startButton_Click(object sender, EventArgs e)
         {
 
             turnPanel.BackColor = Color.Red;
             File.WriteAllText("log.txt", string.Empty);
 
+            //Starts timer
             timer1.Interval = tick;
             timer1.Start();
 
@@ -308,6 +328,7 @@ namespace connect5
             {
                 //Does the first move
                 Process.Start(comp1File);
+                //Gets move from move.txt
                 String input = File.ReadAllText("move.txt");
                 char c = input[0];
                 char r = input[2];
@@ -352,11 +373,6 @@ namespace connect5
             piece.Visible = true;
 
 
-            //Outboard
-            //If valid make piece visible
-
-            //Delete if not valid
-
             if (count % 2 == 1)
             {
                 //If odd turn then yellow
@@ -374,7 +390,7 @@ namespace connect5
             //Add logic to determine if it is computer or human turn
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
-                //Opens winner form and passes in player
+                //Opens winner form and passes in player / stops timer
                 timer1.Stop();
                 timer1.Enabled = false;
                 timer1.Interval = 1000000000;
@@ -382,11 +398,24 @@ namespace connect5
                 frm.Show(this);
    
             }
+            else if(isTie() == true)
+            {
+                timer1.Stop();
+                timer1.Enabled = false;
+                timer1.Interval = 1000000000;
+                string message = "Game Over";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                string caption = "Tie!";
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+                ResetButton.PerformClick();
+
+            }
             else if (human1 == false && human2 == false)
             {
 
                 if (count % 2 == 0)
                 {
+                    //Computer 1 turn
                     Process.Start(comp1File);
                     String input = File.ReadAllText("move.txt");
                     char c = input[0];
@@ -397,6 +426,7 @@ namespace connect5
                 }
                 else
                 {
+                    //Computer 2 turn
                     Process.Start(comp2File);
                     String input = File.ReadAllText("move.txt");
                     char c = input[0];
@@ -436,20 +466,15 @@ namespace connect5
 
             if ((human1 == true && turn == 1) || (human2 == true && turn == 2))
             {
-                var cellPos = GetRowColIndex(board1, board1.PointToClient(Cursor.Position));
+                getIndex(board1, board1.PointToClient(Cursor.Position));
             }
             outputBoard();
 
-
+            //Adds piece to board and stops timer
             Panel piece = makePanel(turn, colInsert, rowInsert);
             timer1.Stop();
             piece.Visible = true;
 
-
-            //Outboard
-            //If valid make piece visible
-
-            //Delete if not valid
 
             if (count % 2 == 1)
             {
@@ -465,10 +490,9 @@ namespace connect5
 
             outputBoard();
 
-            //Add logic to determine if it is computer or human turn
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
-                //Opens winner form and passes in player
+                //Opens winner form and passes in player / stops timer
                 timer1.Stop();
                 timer1.Enabled = false;
                 timer1.Interval = 1000000000;
@@ -476,8 +500,21 @@ namespace connect5
                 frm.Show(this);
                 
             }
+            else if (isTie() == true)
+            {
+                timer1.Stop();
+                timer1.Enabled = false;
+                timer1.Interval = 1000000000;
+                string message = "Game Over";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                string caption = "Tie!";
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+                ResetButton.PerformClick();
+
+            }
             else if (computer1 == true && count % 2 == 0)
             {
+                //Computer 1 turn
                 Process.Start(comp1File);
                 String input = File.ReadAllText("move.txt");
                 char c = input[0];
@@ -488,6 +525,7 @@ namespace connect5
             }
             else if (computer2 == true && count % 2 == 1)
             {
+                //Computer 2 turn
                 Process.Start(comp2File);
                 String input = File.ReadAllText("move.txt");
                 char c = input[0];
@@ -496,10 +534,12 @@ namespace connect5
                 rowInsert = Int32.Parse(r.ToString());
                 computerClick();
             }
+            //Restarts timer
             timer1.Start();
 
         }
 
+        //Resets board timer
         public void ResetButton_Click(object sender, EventArgs e)
         {
             timer1.Enabled= false;
@@ -508,7 +548,33 @@ namespace connect5
             this.Dispose(false);
 
         }
-       
+
+
+        bool isTie()
+        {
+            int count0 = 0;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[i,j] == 0)
+                    {
+                        count0++;
+                    }
+                }
+            }
+
+            if(count0 > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //Determines if there is a winner
         bool IsWinner(int colInsert, int rowInsert, playerInfo Player)
         {
             // Checks horizontal wins
@@ -516,12 +582,9 @@ namespace connect5
             {
                 for (int col = 0; col < matrix.GetLength(1) - 4; col++)
                 {
-                    if (matrix[row, col] == Player.playerID
-                        && matrix[row, col + 1] == Player.playerID
-                        && matrix[row, col + 2] == Player.playerID
-                        && matrix[row, col + 3] == Player.playerID
-                        && matrix[row, col + 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row, col + 1] == Player.playerID && matrix[row, col + 2] == Player.playerID && matrix[row, col + 3] == Player.playerID && matrix[row, col + 4] == Player.playerID)
                     {
+                        //Five pieces found
                         return true;
                     }
                 }
@@ -532,12 +595,9 @@ namespace connect5
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    if (matrix[row, col] == Player.playerID
-                        && matrix[row + 1, col] == Player.playerID
-                        && matrix[row + 2, col] == Player.playerID
-                        && matrix[row + 3, col] == Player.playerID
-                        && matrix[row + 4, col] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col] == Player.playerID && matrix[row + 2, col] == Player.playerID && matrix[row + 3, col] == Player.playerID && matrix[row + 4, col] == Player.playerID)
                     {
+                        //Five pieces found
                         return true;
                     }
                 }
@@ -548,12 +608,9 @@ namespace connect5
             {
                 for (int col = 0; col < matrix.GetLength(1) - 4; col++)
                 {
-                    if (matrix[row, col] == Player.playerID
-                        && matrix[row + 1, col + 1] == Player.playerID
-                        && matrix[row + 2, col + 2] == Player.playerID
-                        && matrix[row + 3, col + 3] == Player.playerID
-                        && matrix[row + 4, col + 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col + 1] == Player.playerID && matrix[row + 2, col + 2] == Player.playerID && matrix[row + 3, col + 3] == Player.playerID && matrix[row + 4, col + 4] == Player.playerID)
                     {
+                        //Five pieces found
                         return true;
                     }
                 }
@@ -564,21 +621,20 @@ namespace connect5
             {
                 for (int col = matrix.GetLength(1) - 1; col >= 4; col--)
                 {
-                    if (matrix[row, col] == Player.playerID
-                        && matrix[row + 1, col - 1] == Player.playerID
-                        && matrix[row + 2, col - 2] == Player.playerID
-                        && matrix[row + 3, col - 3] == Player.playerID
-                        && matrix[row + 4, col - 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col - 1] == Player.playerID && matrix[row + 2, col - 2] == Player.playerID && matrix[row + 3, col - 3] == Player.playerID && matrix[row + 4, col - 4] == Player.playerID)
                     {
+                        //Five pieces found
                         return true;
                     }
                 }
             }
 
+            //No winner
             return false;
         }
 
 
+        //Lets user select computer file
         private void ComputerButton1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -591,6 +647,7 @@ namespace connect5
             }
         }
 
+        //Lets user select computer file
         private void ComputerButton2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -603,11 +660,13 @@ namespace connect5
             }
         }
 
+        //Opens log
         private void logButton_Click(object sender, EventArgs e)
         {
             Process.Start("log.txt");
         }
 
+        //Shows that you lost because of running out of time
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Enabled = false;
@@ -618,6 +677,7 @@ namespace connect5
             ResetButton.PerformClick();
         }
 
+        //Goes back to the menu
         private void menuButton_Click(object sender, EventArgs e)
         {
             this.Close();
