@@ -46,29 +46,55 @@ namespace computer_AI
             }
         }
 
-        public static void findRandom(int[,] board)
+        public static int findRandomRow(int[,] board)
         {
-            row = r.Next(0, connect5.board.lastrow);
-            col = r.Next(0, connect5.board.lastcol);
+            row = r.Next(0, board.GetLength(0));
 
+
+
+            return row;
+
+        }
+
+        public static int findRandomCol(int[,] board)
+        {
+            
+            col = r.Next(0, board.GetLength(1));
+
+            return col;
+        }
+
+
+        public static bool checkValid(int row, int col, int[,] board)
+        {
             if (board[row, col] == 0)
             {
-                putMove(col, row);
+                return true;
             }
             else
             {
-                findRandom(board);
+                row = findRandomRow(board);
+                col = findRandomCol(board);
+
+                checkValid(row, col, board);
+
 
             }
-
+            return false;
         }
 
         static void Main(string[] args)
         {
-            int[,] board = getBoard();
+            int[,] board = new int[connect5.board.lastrow, connect5.board.lastrow];
+            board =  getBoard();
 
+            row = findRandomRow(board);
+            col = findRandomCol(board);
 
-            findRandom(board);
+           if(checkValid(row, col, board) == true)
+           {
+                putMove(col, row);
+           }
 
         }
     }

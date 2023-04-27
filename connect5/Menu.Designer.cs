@@ -47,7 +47,7 @@
             this.sizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sizeLabel.Location = new System.Drawing.Point(14, 207);
             this.sizeLabel.Name = "sizeLabel";
-            this.sizeLabel.Size = new System.Drawing.Size(169, 36);
+            this.sizeLabel.Size = new System.Drawing.Size(203, 40);
             this.sizeLabel.TabIndex = 1;
             this.sizeLabel.Text = "Board Size:";
             // 
@@ -57,7 +57,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(14, 271);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 36);
+            this.label1.Size = new System.Drawing.Size(193, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Time Limit:";
             // 
@@ -67,7 +67,7 @@
             this.check76.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.check76.Location = new System.Drawing.Point(219, 214);
             this.check76.Name = "check76";
-            this.check76.Size = new System.Drawing.Size(76, 29);
+            this.check76.Size = new System.Drawing.Size(88, 33);
             this.check76.TabIndex = 3;
             this.check76.Text = "7 x 6";
             this.check76.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@
             this.check97.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.check97.Location = new System.Drawing.Point(340, 214);
             this.check97.Name = "check97";
-            this.check97.Size = new System.Drawing.Size(76, 29);
+            this.check97.Size = new System.Drawing.Size(88, 33);
             this.check97.TabIndex = 4;
             this.check97.Text = "9 x 7";
             this.check97.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             this.check107.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.check107.Location = new System.Drawing.Point(473, 214);
             this.check107.Name = "check107";
-            this.check107.Size = new System.Drawing.Size(87, 29);
+            this.check107.Size = new System.Drawing.Size(101, 33);
             this.check107.TabIndex = 5;
             this.check107.Text = "10 x 7";
             this.check107.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox5.Location = new System.Drawing.Point(219, 278);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(81, 29);
+            this.checkBox5.Size = new System.Drawing.Size(96, 33);
             this.checkBox5.TabIndex = 6;
             this.checkBox5.Text = "5 sec";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             this.checkBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox10.Location = new System.Drawing.Point(324, 278);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(92, 29);
+            this.checkBox10.Size = new System.Drawing.Size(109, 33);
             this.checkBox10.TabIndex = 7;
             this.checkBox10.Text = "10 sec";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.checkBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox15.Location = new System.Drawing.Point(468, 278);
             this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(92, 29);
+            this.checkBox15.Size = new System.Drawing.Size(109, 33);
             this.checkBox15.TabIndex = 8;
             this.checkBox15.Text = "15 sec";
             this.checkBox15.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::connect5.Properties.Resources.connect5logo;
+            this.panel1.BackgroundImage = global::connect5.Properties.Resources.connect4logo;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Location = new System.Drawing.Point(79, 12);
             this.panel1.Name = "panel1";

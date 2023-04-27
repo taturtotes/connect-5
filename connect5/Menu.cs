@@ -25,20 +25,20 @@ namespace connect5
         {
             if(check76.Checked == true)
             {
-                row = 7;
-                col = 6;
+                col = 7;
+                row = 6;
             }
 
             if (check97.Checked == true)
             {
-                row = 9;
-                col = 7;
+                col = 9;
+                row = 7;
             }
 
             if (check107.Checked == true)
             {
-                row = 10;
-                col = 7;
+                col = 10;
+                row = 7;
             }
 
             if(checkBox5.Checked == true)

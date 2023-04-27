@@ -55,28 +55,29 @@
             // 
             // board1
             // 
+            this.board1.AutoSize = true;
+            this.board1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.board1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.board1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.board1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.board1.ColumnCount = 6;
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            this.board1.Location = new System.Drawing.Point(358, 18);
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.Location = new System.Drawing.Point(357, 18);
             this.board1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.board1.Name = "board1";
-            this.board1.RowCount = 7;
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.board1.Size = new System.Drawing.Size(662, 536);
+            this.board1.RowCount = 6;
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.Size = new System.Drawing.Size(621, 621);
             this.board1.TabIndex = 0;
             this.board1.Click += new System.EventHandler(this.board1_Click);
             // 
@@ -101,7 +102,7 @@
             this.RedLabel.ForeColor = System.Drawing.Color.Red;
             this.RedLabel.Location = new System.Drawing.Point(7, 7);
             this.RedLabel.Name = "RedLabel";
-            this.RedLabel.Size = new System.Drawing.Size(58, 29);
+            this.RedLabel.Size = new System.Drawing.Size(66, 32);
             this.RedLabel.TabIndex = 2;
             this.RedLabel.Text = "Red";
             // 
@@ -156,7 +157,7 @@
             this.YellowLabel.ForeColor = System.Drawing.Color.Goldenrod;
             this.YellowLabel.Location = new System.Drawing.Point(7, 14);
             this.YellowLabel.Name = "YellowLabel";
-            this.YellowLabel.Size = new System.Drawing.Size(87, 29);
+            this.YellowLabel.Size = new System.Drawing.Size(99, 32);
             this.YellowLabel.TabIndex = 3;
             this.YellowLabel.Text = "Yellow";
             // 
@@ -235,7 +236,7 @@
             this.TurnLabel.ForeColor = System.Drawing.Color.Blue;
             this.TurnLabel.Location = new System.Drawing.Point(9, 98);
             this.TurnLabel.Name = "TurnLabel";
-            this.TurnLabel.Size = new System.Drawing.Size(120, 24);
+            this.TurnLabel.Size = new System.Drawing.Size(135, 26);
             this.TurnLabel.TabIndex = 3;
             this.TurnLabel.Text = "Whose Turn:";
             // 
@@ -247,7 +248,7 @@
             this.ControlLabel.ForeColor = System.Drawing.Color.Blue;
             this.ControlLabel.Location = new System.Drawing.Point(7, 7);
             this.ControlLabel.Name = "ControlLabel";
-            this.ControlLabel.Size = new System.Drawing.Size(91, 29);
+            this.ControlLabel.Size = new System.Drawing.Size(106, 32);
             this.ControlLabel.TabIndex = 2;
             this.ControlLabel.Text = "Control";
             // 
@@ -304,8 +305,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1031, 578);
+            this.ClientSize = new System.Drawing.Size(1234, 795);
             this.Controls.Add(this.menuButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -322,6 +324,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

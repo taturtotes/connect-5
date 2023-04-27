@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,6 +24,38 @@ namespace connect5
 
     public partial class board : Form
     {
+
+        //THIS MAKES THE BOARD NOT FLASH
+        #region .. Double Buffered function ..
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+                return;
+            System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            aProp.SetValue(c, true, null);
+        }
+
+        #endregion
+
+
+        #region .. code for Flucuring ..
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
+        #endregion
+
+
+
+
+
         //Tells type of player
         bool human1;
         bool human2;
@@ -74,47 +107,67 @@ namespace connect5
             tick = time;
             lastrow = row;
             lastcol = col;
+            SetDoubleBuffered(board1);
 
-            if(row == 10)
+            if (col == 10)
             {
-                board1.RowCount = 10;
-                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
-                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+                board1.ColumnCount = 10;
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90));
 
-                TableLayoutRowStyleCollection styles = this.board1.RowStyles;
+                TableLayoutColumnStyleCollection styles = this.board1.ColumnStyles;
 
-                foreach(RowStyle style in styles)
+                foreach(ColumnStyle style in styles)
                 {
-                    style.SizeType= SizeType.Percent;
-                    style.Height = 10;
+                    style.SizeType= SizeType.Absolute;
+                    style.Width = 70;
                 }
             }
 
-            if(row == 9)
+            if(col == 9)
             {
-                board1.RowCount = 9;
-                board1.RowStyles.Add(new RowStyle(SizeType.Percent, 11));
+                board1.ColumnCount = 9;
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
 
-                TableLayoutRowStyleCollection styles = this.board1.RowStyles;
+                TableLayoutColumnStyleCollection styles = this.board1.ColumnStyles;
 
-                foreach (RowStyle style in styles)
+                foreach (ColumnStyle style in styles)
                 {
-                    style.SizeType = SizeType.Percent;
-                    style.Height = 11;
+                    style.SizeType = SizeType.Absolute;
+                    style.Width = 70;
                 }
             }
 
             if(col == 7)
             {
                 board1.ColumnCount= 7;
-                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17));
+                board1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
 
                 TableLayoutColumnStyleCollection styles = this.board1.ColumnStyles;
 
                 foreach (ColumnStyle style in styles)
                 {
-                    style.SizeType = SizeType.Percent;
-                    style.Width = 17;
+                    style.SizeType = SizeType.Absolute;
+                    style.Width = 70;
+                }
+
+            }
+
+            if (row == 7)
+            {
+                board1.RowCount = 7;
+                board1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+
+                TableLayoutRowStyleCollection styles = this.board1.RowStyles;
+
+                foreach (RowStyle style in styles)
+                {
+                    style.SizeType = SizeType.Absolute;
+                    style.Height = 70;
                 }
 
             }
@@ -156,24 +209,31 @@ namespace connect5
         }
 
         //MAKE PIECES and drops piece in the last available slot
-        Panel makePanel(int color, int col, int row)
+        Button makePanel(int color, int col, int row)
         {
 
             Panel piece = new Panel();
+            Button b = new Button();
+            GraphicsPath p = new GraphicsPath();
+            p.AddEllipse(1, 1, 60 - 4, 60 - 4);
+            b.Region = new Region(p);
+            b.Anchor = AnchorStyles.Top| AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+
+            SetDoubleBuffered(b);
             bool found = false;
             if (color == 1)
             {
 
-                piece.BackColor = Color.Red;
+                b.BackColor = Color.Red;
                 
 
             }
             else
             {
-                piece.BackColor = Color.Yellow;
+                b.BackColor = Color.Yellow;
             }
 
-            piece.Visible = false;
+            b.Visible = false;
 
 
             //Finds last available space in column
@@ -211,7 +271,8 @@ namespace connect5
             }
 
             //Adds piece to board
-            board1.Controls.Add(piece, col, row);
+            board1.Controls.Add(b, col, row);
+
 
             //Updates the log
             using (StreamWriter writetext = File.AppendText("log.txt"))
@@ -227,7 +288,7 @@ namespace connect5
                 
             }
 
-            return piece;
+            return b;
         }
 
 
@@ -368,7 +429,7 @@ namespace connect5
 
             outputBoard();
 
-            Panel piece = makePanel(turn, colInsert, rowInsert);
+            Button piece = makePanel(turn, colInsert, rowInsert);
             timer1.Stop();
             piece.Visible = true;
 
@@ -445,7 +506,7 @@ namespace connect5
 
         private void board1_Click(object sender, EventArgs e)
         {
-
+            
             playerInfo Player = new playerInfo();
 
             //Counting number of turns
@@ -471,7 +532,7 @@ namespace connect5
             outputBoard();
 
             //Adds piece to board and stops timer
-            Panel piece = makePanel(turn, colInsert, rowInsert);
+            Button piece = makePanel(turn, colInsert, rowInsert);
             timer1.Stop();
             piece.Visible = true;
 
@@ -490,6 +551,7 @@ namespace connect5
 
             outputBoard();
 
+           
             if (IsWinner(colInsert, rowInsert, Player) == true)
             {
                 //Opens winner form and passes in player / stops timer
@@ -580,9 +642,9 @@ namespace connect5
             // Checks horizontal wins
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int col = 0; col < matrix.GetLength(1) - 4; col++)
+                for (int col = 0; col < matrix.GetLength(1) - 3; col++)
                 {
-                    if (matrix[row, col] == Player.playerID && matrix[row, col + 1] == Player.playerID && matrix[row, col + 2] == Player.playerID && matrix[row, col + 3] == Player.playerID && matrix[row, col + 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row, col + 1] == Player.playerID && matrix[row, col + 2] == Player.playerID && matrix[row, col + 3] == Player.playerID)
                     {
                         //Five pieces found
                         return true;
@@ -591,11 +653,11 @@ namespace connect5
             }
 
             // Checks vertical wins
-            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            for (int row = 0; row < matrix.GetLength(0) - 3; row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col] == Player.playerID && matrix[row + 2, col] == Player.playerID && matrix[row + 3, col] == Player.playerID && matrix[row + 4, col] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col] == Player.playerID && matrix[row + 2, col] == Player.playerID && matrix[row + 3, col] == Player.playerID)
                     {
                         //Five pieces found
                         return true;
@@ -604,11 +666,11 @@ namespace connect5
             }
 
             // Checks downward diagonal
-            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            for (int row = 0; row < matrix.GetLength(0) - 3; row++)
             {
-                for (int col = 0; col < matrix.GetLength(1) - 4; col++)
+                for (int col = 0; col < matrix.GetLength(1) - 3; col++)
                 {
-                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col + 1] == Player.playerID && matrix[row + 2, col + 2] == Player.playerID && matrix[row + 3, col + 3] == Player.playerID && matrix[row + 4, col + 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col + 1] == Player.playerID && matrix[row + 2, col + 2] == Player.playerID && matrix[row + 3, col + 3] == Player.playerID)
                     {
                         //Five pieces found
                         return true;
@@ -617,11 +679,11 @@ namespace connect5
             }
 
             // Checks upward diagonal
-            for (int row = 0; row < matrix.GetLength(0) - 4; row++)
+            for (int row = 0; row < matrix.GetLength(0) - 3; row++)
             {
-                for (int col = matrix.GetLength(1) - 1; col >= 4; col--)
+                for (int col = matrix.GetLength(1) - 1; col >= 3; col--)
                 {
-                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col - 1] == Player.playerID && matrix[row + 2, col - 2] == Player.playerID && matrix[row + 3, col - 3] == Player.playerID && matrix[row + 4, col - 4] == Player.playerID)
+                    if (matrix[row, col] == Player.playerID && matrix[row + 1, col - 1] == Player.playerID && matrix[row + 2, col - 2] == Player.playerID && matrix[row + 3, col - 3] == Player.playerID)
                     {
                         //Five pieces found
                         return true;
