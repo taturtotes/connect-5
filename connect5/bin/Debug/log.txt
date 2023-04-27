@@ -1,0 +1,5 @@
+Red Player placed piece in row: 5 col: 1
+Yellow Player placed piece in row: 5 col: 0
+Red Player placed piece in row: 4 col: 1
+Yellow Player placed piece in row: 4 col: 0
+Red Player placed piece in row: 3 col: 1

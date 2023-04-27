@@ -66,7 +66,7 @@
             this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.board1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.board1.Location = new System.Drawing.Point(357, 18);
             this.board1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.board1.Name = "board1";
@@ -77,7 +77,7 @@
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.board1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.board1.Size = new System.Drawing.Size(621, 621);
+            this.board1.Size = new System.Drawing.Size(624, 621);
             this.board1.TabIndex = 0;
             this.board1.Click += new System.EventHandler(this.board1_Click);
             // 
@@ -102,7 +102,7 @@
             this.RedLabel.ForeColor = System.Drawing.Color.Red;
             this.RedLabel.Location = new System.Drawing.Point(7, 7);
             this.RedLabel.Name = "RedLabel";
-            this.RedLabel.Size = new System.Drawing.Size(66, 32);
+            this.RedLabel.Size = new System.Drawing.Size(58, 29);
             this.RedLabel.TabIndex = 2;
             this.RedLabel.Text = "Red";
             // 
@@ -157,7 +157,7 @@
             this.YellowLabel.ForeColor = System.Drawing.Color.Goldenrod;
             this.YellowLabel.Location = new System.Drawing.Point(7, 14);
             this.YellowLabel.Name = "YellowLabel";
-            this.YellowLabel.Size = new System.Drawing.Size(99, 32);
+            this.YellowLabel.Size = new System.Drawing.Size(87, 29);
             this.YellowLabel.TabIndex = 3;
             this.YellowLabel.Text = "Yellow";
             // 
@@ -236,7 +236,7 @@
             this.TurnLabel.ForeColor = System.Drawing.Color.Blue;
             this.TurnLabel.Location = new System.Drawing.Point(9, 98);
             this.TurnLabel.Name = "TurnLabel";
-            this.TurnLabel.Size = new System.Drawing.Size(135, 26);
+            this.TurnLabel.Size = new System.Drawing.Size(120, 24);
             this.TurnLabel.TabIndex = 3;
             this.TurnLabel.Text = "Whose Turn:";
             // 
@@ -248,7 +248,7 @@
             this.ControlLabel.ForeColor = System.Drawing.Color.Blue;
             this.ControlLabel.Location = new System.Drawing.Point(7, 7);
             this.ControlLabel.Name = "ControlLabel";
-            this.ControlLabel.Size = new System.Drawing.Size(106, 32);
+            this.ControlLabel.Size = new System.Drawing.Size(91, 29);
             this.ControlLabel.TabIndex = 2;
             this.ControlLabel.Text = "Control";
             // 
@@ -316,7 +316,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "board";
-            this.Text = "Connect 5";
+            this.Text = "Connect 4";
             this.redPanel.ResumeLayout(false);
             this.redPanel.PerformLayout();
             this.panel1.ResumeLayout(false);

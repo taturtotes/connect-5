@@ -12,3 +12,17 @@ C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Debug\computer
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\obj\Debug\computer_AI.pdb
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Debug\board.txt
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\computer_AI\bin\Debug\move.txt
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\move.txt
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\board.txt
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\computer_AI.exe.config
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\computer_AI.exe
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\computer_AI.pdb
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\connect5.exe
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\connect5.pdb
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\bin\Debug\connect5.exe.config
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.csproj.AssemblyReference.cache
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.csproj.SuggestedBindingRedirects.cache
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.csproj.CoreCompileInputs.cache
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.csproj.CopyComplete
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.exe
+C:\Users\angel\Desktop\CS438\connect-5\computer_AI\obj\Debug\computer_AI.pdb

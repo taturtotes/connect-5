@@ -24,3 +24,5 @@ C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.Wi
 C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.Winner.resources
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\bin\Debug\move.txt
 C:\Users\lduff\OneDrive\Documents\CS 438\connect5\connect5\obj\Debug\connect5.Menu.resources
+C:\Users\angel\Desktop\CS438\connect-5\connect5\bin\Debug\move.txt
+C:\Users\angel\Desktop\CS438\connect-5\connect5\obj\Debug\connect5.Menu.resources
